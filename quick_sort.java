@@ -1,0 +1,59 @@
+public class quick_sort{
+
+   
+
+    public static int partition(int arr[],int s,int e){
+        int pivot=arr[s];
+        int count=0;
+        for(int i=s+1;i<=e;i++){
+            if(arr[i]<=pivot){
+                count++;
+            }
+
+        }
+            int pivotIndex = s+count;
+            int temp= arr[s];
+            arr[s]=arr[pivotIndex];
+            arr[pivotIndex]=temp;
+           
+            int i=s,j=e;
+            while(i<pivotIndex && j>pivotIndex){
+                while(arr[i]<=pivot){
+                    i++;
+                }
+                while(arr[j]>pivot)
+                {
+                    j--;
+                }
+                if(i<pivotIndex && j>pivotIndex){
+                    int temp1= arr[i];
+                    arr[i]=arr[j];
+                    arr[j]=temp1;
+                   }
+            }
+
+        return pivotIndex;
+}
+
+    public static void quick(int arr[],int s, int e){
+
+        if(s>=e)
+        {
+            return ;
+        }
+
+        int p = partition(arr,s,e);
+        quick(arr,s,p-1);
+        quick(arr,p+1,e);
+
+    }
+    public static void main(String args[]){
+        int arr[]={7,3,0,8,1,4,2,8,5};
+        int n=arr.length;
+        quick(arr, 0, n-1);
+        for(int i=0;i<n;i++){
+            System.out.print(arr[i] + " ");
+            
+        }
+ }
+}
